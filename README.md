@@ -1,66 +1,75 @@
-Projeto Contas a Pagar
+# Projeto Contas a Pagar
 
-> DescriÁ„o
+> Descri√ß√£o
 
-   Este projeto È uma aplicaÁ„o Spring Boot para gerenciamento de contas a pagar, que inclui funcionalidades como criaÁ„o, 
-   atualizaÁ„o, consulta e importaÁ„o de contas via CSV. Utiliza Docker e Docker-Compose para a configuraÁ„o do ambiente de desenvolvimento.
+   Este projeto √© uma aplica√ß√£o Spring Boot para gerenciamento de contas a pagar, que inclui funcionalidades como cria√ß√£o, 
+   atualiza√ß√£o, consulta e importa√ß√£o de contas via CSV. Utiliza Docker e Docker-Compose para a configura√ß√£o do ambiente de desenvolvimento.
 
 > Tecnologias Utilizadas
 
    Java 17, Spring Boot, Spring Data JPA, Flyway, PostgreSQL, Docker e Docker-Compose.
 
-> ConfiguraÁ„o do Ambiente
+> Configura√ß√£o do Ambiente
 
-Subir aplicaÁ„o: docker-compose up --build
+Subir aplica√ß√£o: docker-compose up --build
 
-> ConfiguraÁ„o do Postman
+> Configura√ß√£o do Postman
 
 Para autenticar as chamadas no Postman, use as seguintes credenciais:
-Usu·rio: user
-Senha: password
+```
+   Usu√°rio: user
+   Senha: password
+```
 
 > Chamadas das APIs:
 
 1. Criar Conta
-   MÈtodo: POST
+   M√©todo: POST
+   ```
    URL: http://localhost:8080/api/conta
    Body:
    {
-   "descricao": "Conta de luz",
-   "valor": 150.00,
-   "dataVencimento": "2024-07-01",
-   "situacao": "PENDENTE"
+   	"descricao": "Conta de luz",
+       	"valor": 150.00,
+   	"dataVencimento": "2024-07-01",
+   	"situacao": "PENDENTE"
    }
+   ```
 
-2. Atualizar Conta
-   MÈtodo: PUT
+3. Atualizar Conta
+   M√©todo: PUT
+   
+```
    URL: http://localhost:8080/api/conta/{id}
    Body:
-   {
-   "descricao": "Conta de luz atualizada",
-   "valor": 150.00,
-   "dataVencimento": "2024-07-15",
-   "situacao": "PAGO"
-   }
-
-3. Alterar situaÁ„o da conta
-   MÈtodo: PUT
+      {
+         "descricao": "Conta de luz atualizada",
+         "valor": 150.00,
+         "dataVencimento": "2024-07-15",
+         "situacao": "PAGO"
+      }
+```
+5. Alterar situa√ß√£o da conta
+   M√©todo: PUT
+```
    URL: http://localhost:8080/api/conta/{id}/situacao
    Body:
-   {
-   "dataPagamento": "2024-06-06",
-   "situacao": "PAGO"
-   }
-
-4. Importar CSV
-   MÈtodo: POST
+      {
+         "dataPagamento": "2024-06-06",
+         "situacao": "PAGO"
+      }
+```
+6. Importar CSV
+   M√©todo: POST
+```
    URL: http://localhost:8080/api/conta/import
    Headers:
    Content-Type: multipart/form-data
    Body:
    Escolher um arquivo CSV.
-
-   sugest„o/formato csv:
+```
+ sugest√£o dados/formato csv:
+``` 
    dataVencimento;dataPagamento;valor;descricao;situacao
    30/06/2024;;2500;Aluguel;Pendente
    29/06/2024;01/06/2024;1500;Conta de luz;Pago
@@ -77,21 +86,29 @@ Senha: password
    29/06/2024;05/06/2024;1500;conta teste;Pago
    29/06/2024;06/06/2024;1500;conta teste 1;Pago
    29/06/2024;06/06/2024;1500;conta teste 2;Pago
-
-5. Consultar Contas
-   MÈtodo: GET
+```
+7. Consultar Contas
+   M√©todo: GET
+```
    URL: http://localhost:8080/api/conta?page=0&size=10
+```
 
-6. Consultar Conta filtrando por id
-      MÈtodo: GET
+8. Consultar Conta filtrando por id
+      M√©todo: GET
+```
       URL: http://localhost:8080/api/conta/{id}
+ ```
 
 
-7.  Consultar Contas a pagar (pendente) com filtro de data de vencimento e descriÁ„o.
-   MÈtodo: GET
+9.  Consultar Contas a pagar (pendente) com filtro de data de vencimento e descri√ß√£o.
+   M√©todo: GET
+```
    URL: http://localhost:8080/api/conta/pendente?dataInicio=2024-06-01&dataFim=2024-06-30?descricao=Aluguel
+```
 
-8. Consultar Total Pago por perÌodo
-    MÈtodo: GET
-    URL: http://localhost:8080/api/conta/total-pago?dataInicio=2024-06-01&dataFim=2024-06-30 
+11. Consultar Total Pago por per√≠odo
+    M√©todo: GET
+    ```
+    URL: http://localhost:8080/api/conta/total-pago?dataInicio=2024-06-01&dataFim=2024-06-30
+    ```
 
