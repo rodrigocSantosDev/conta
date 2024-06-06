@@ -68,7 +68,7 @@ Para autenticar as chamadas no Postman, use as seguintes credenciais:
    Body:
    Escolher um arquivo CSV.
 ```
- sugestão/formato csv:
+ sugestão dados/formato csv:
 ``` 
    dataVencimento;dataPagamento;valor;descricao;situacao
    30/06/2024;;2500;Aluguel;Pendente
