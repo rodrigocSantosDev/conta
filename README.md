@@ -16,8 +16,10 @@ Subir aplicação: docker-compose up --build
 > Configuração do Postman
 
 Para autenticar as chamadas no Postman, use as seguintes credenciais:
-Usuário: user
-Senha: password
+```
+   Usuário: user
+   Senha: password
+```
 
 > Chamadas das APIs:
 
