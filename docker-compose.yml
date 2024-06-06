@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: conta
+      POSTGRES_USER: user_totvs
+      POSTGRES_PASSWORD: password_totvs@062024
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/conta
+      SPRING_DATASOURCE_USERNAME: user_totvs
+      SPRING_DATASOURCE_PASSWORD: password_totvs@062024
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_FLYWAY_ENABLED: true
+      SPRING_FLYWAY_LOCATIONS: classpath:db/migration
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+
+volumes:
+  postgres_data:
